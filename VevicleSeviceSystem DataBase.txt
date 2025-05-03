@@ -1,0 +1,41 @@
+CREATE DATABASE Customer;
+
+USE Customer;
+
+CREATE TABLE CusDetails (
+    CusID INT IDENTITY(1,1) PRIMARY KEY,
+    CusFullName NVARCHAR(100),
+    CusPhone NVARCHAR(15),
+    CusEmail NVARCHAR(100),
+    VehicleType NVARCHAR(50),
+    VehicleModel NVARCHAR(50)
+);
+
+SELECT * FROM CusDetails;
+
+CREATE TABLE LoginTB (
+    Username NVARCHAR(50) PRIMARY KEY,
+    UserPassword NVARCHAR(100)
+);
+
+SELECT * FROM LoginTB;
+
+
+CREATE TABLE Services (
+    Service_ID INT PRIMARY KEY,
+    Service_Name NVARCHAR(100),
+    Service_Price DECIMAL(10, 2)
+);
+
+SELECT * FROM Services;
+
+CREATE TABLE Report (
+    Bill_ID INT IDENTITY(1,1) PRIMARY KEY,
+    Cus_ID INT FOREIGN KEY REFERENCES CusDetails(CusID),
+    Vehicle_Model NVARCHAR(50),
+    Select_Services NVARCHAR(MAX),
+    Grand_Total DECIMAL(10, 2),
+    Date DATE
+);
+
+SELECT * FROM Report;
